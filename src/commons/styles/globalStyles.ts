@@ -28,7 +28,7 @@ export const globalStyles = css`
     src: url("/fonts/NotoSansKR-Medium.otf");
   }
   @font-face {
-    font-family: "NotoSansKR-700";
-    scr: url("/fonts/NotoSansKR-Bold.otf");
+    font-family: "NotoSansKR-800";
+    scr: url("/fonts/NotoSansKR-Black.otf");
   }
 `;
