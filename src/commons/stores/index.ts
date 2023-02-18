@@ -8,3 +8,7 @@ export const isEditState = atom({
   key: "isEditState",
   default: false,
 });
+export const infoUserState = atom({
+  key: "infoUserState",
+  default: {},
+});

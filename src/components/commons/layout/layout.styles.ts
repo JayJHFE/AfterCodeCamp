@@ -15,6 +15,9 @@ export const HeaderWrapper = styled.div`
 `;
 export const HeaderLogo = styled.img`
   padding: 26px 0px 25px 76px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const HeaderMenu = styled.div`
   display: flex;
@@ -26,11 +29,66 @@ export const HeaderLogin = styled.span`
   font-family: "NotoSansKR-400";
   font-size: 14px;
   margin-right: 66px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+export const LoggedInBox = styled.div`
+  width: 140px;
+  display: flex;
+  flex-direction: row;
+`;
+export const NameBox = styled.div`
+  font-family: "NotoSansKR-500";
+  font-size: 14px;
+`;
+export const PointLetter = styled.div`
+  font-family: "NotoSansKR-400";
+  font-size: 14px;
+`;
+export const PointBox = styled.div`
+  font-family: "NotoSansKR-400";
+  font-size: 14px;
+`;
+export const PointBox2 = styled.div`
+  font-family: "NotoSansKR-400";
+  font-size: 14px;
+  color: black;
+`;
+export const PointNumber = styled.span`
+  font-family: "NotoSansKR-400";
+  font-size: 14px;
+  padding-left: 3px;
+  text-decoration: underline;
+`;
+export const ChargePoint = styled.div`
+  font-family: "NotoSansKR-400";
+  font-size: 14px;
+  margin-right: 54px;
+  text-decoration: underline;
+  :hover {
+    cursor: pointer;
+    color: red;
+  }
+`;
+export const LogOut = styled.button`
+  font-family: "NotoSansKR-400";
+  font-size: 14px;
+  border: none;
+  background-color: #ffffff;
+  margin-right: 45px;
+  :hover {
+    cursor: pointer;
+    color: red;
+  }
 `;
 export const HeaderSignUp = styled.div`
   font-family: "NotoSansKR-400";
   font-size: 14px;
   margin-right: 56px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const HeaderBasket = styled.div`
   display: flex;
@@ -77,6 +135,9 @@ export const MenuLetter = styled.span`
   font-family: "Roboto-700";
   font-size: 22px;
   color: #ffffff;
+  :hover {
+    cursor: pointer;
+  }
 `;
 // ====================== Layout Footer ================================
 export const FooterWrapper = styled.div`
@@ -159,6 +220,9 @@ export const BlackHeaderSignUp = styled.span`
   color: #ffffff;
   margin-left: 225px;
   // background-color: red;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const BlackHeaderBasket = styled.span`
   font-family: "Roboto-400";

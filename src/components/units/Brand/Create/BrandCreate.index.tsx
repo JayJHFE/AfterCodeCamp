@@ -4,14 +4,108 @@ import "react-quill/dist/quill.snow.css";
 import KakaoMapPage from "../../../commons/map/01";
 import { useRecoilState } from "recoil";
 import { isEditState } from "../../../../commons/stores";
-// import Uploads02 from "../../../commons/upload/02/Uploads02.container";
-// import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
+import { useUploadFile } from "../../../commons/hooks/mutations/useUploadFile";
+import { useCreateUsedItem } from "../../../commons/hooks/mutations/useCreateUsedItem";
+import { useUpdateUsedItem } from "../../../commons/hooks/mutations/useUpdateUsedItem";
+import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
+import { IUseItemFormData, IWriteProps } from "./BrandCreate.types";
+import Uploads01 from "../../../commons/upload/01/Upload01.index";
 
 const ReactQuill = dynamic(async () => await import("react-quill"), {
   ssr: false,
 });
 
-export default function BrandCreateComponent() {
+export default function BrandCreateComponent(props: IWriteProps) {
+  console.log(props.data);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useRecoilState(isEditState);
+  const [files, setFiles] = useState<File[]>([]);
+  const { uploadFile } = useUploadFile();
+  const { createSubmit } = useCreateUsedItem();
+  const { updateSubmit } = useUpdateUsedItem();
+  // const [addressSearchResult, setAddressSearchResult] = useState<string>("");
+
+  const { register, setValue, trigger, reset, handleSubmit } = useForm({
+    // resolver: yupResolver(ProductItemSchema),
+    mode: "onChange",
+    defaultValues: {
+      name: "",
+      remarks: "",
+      contents: "",
+      price: 0,
+      tags: [],
+      // useditemAddress: {
+      //   zipcode: "",
+      //   address: "",
+      //   addressDetail: "",
+      //   lat: 0,
+      //   lng: 0,
+      // },
+      images: ["", ""],
+    },
+  });
+
+  useEffect(() => {
+    if (props.data) {
+      const resetData = {
+        name: props.data?.fetchUseditem?.name,
+        remarks: props.data?.fetchUseditem?.remarks,
+        contents: props.data?.fetchUseditem?.contents,
+        price: props.data?.fetchUseditem?.price,
+        tags: [...props.data?.fetchUseditem.tags],
+        // useditemAddress: {
+        //   zipcode: props.data?.fetchUseditem?.useditemAddress?.zipcode,
+        //   address: props.data?.fetchUseditem?.useditemAddress?.address,
+        //   addressDetail:
+        //     props.data?.fetchUseditem?.useditemAddress?.addressDetail,
+        // },
+        images: [...props.data?.fetchUseditem.images],
+      };
+      reset({ ...resetData });
+      // setAddressSearchResult(
+      //   props.data?.fetchUseditem?.useditemAddress?.address
+      // );
+    }
+  }, [props.data]);
+
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
+  // const handleComplete = (data: Address) => {
+  //   setValue("useditemAddress.zipcode", data.zonecode);
+  //   setValue("useditemAddress.address", data.address);
+  //   setAddressSearchResult(data.address);
+  //   setValue("useditemAddress.addressDetail", "");
+  //   toggleModal();
+  // };
+
+  const onChangeContents = (value: string) => {
+    setValue("contents", value === "<p><br></p>" ? "" : value);
+    // void trigger("contents");
+  };
+
+  const onChangeFileUrls = (fileUrl: File, index: number) => {
+    const newFileUrls = [...files];
+    newFileUrls[index] = fileUrl;
+    setFiles(newFileUrls);
+  };
+  const onClickSubmit = async (data: IUseItemFormData) => {
+    const results = await Promise.all(
+      files.map(async (file) => await uploadFile({ variables: { file } }))
+    );
+    const resultUrls = results.map((el) =>
+      el !== undefined ? el.data?.uploadFile.url : ""
+    );
+    setValue("images", resultUrls);
+    if (!props.isEdit) {
+      void createSubmit(data, resultUrls);
+    } else {
+      void updateSubmit(props.useditemId, data, resultUrls);
+    }
+  };
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -66,7 +160,6 @@ export default function BrandCreateComponent() {
       ["clean"],
     ],
   };
-  const [isEdit, setIsEdit] = useRecoilState(isEditState);
 
   return (
     <>
@@ -81,31 +174,27 @@ export default function BrandCreateComponent() {
       )} */}
       <S.Body>
         <S.Title>{isEdit === false ? "상품등록" : "상품수정"}</S.Title>
-        <form
-        // onSubmit={props.handleSubmit(
-        //   isEdit === false ? props.onClickSubmit : props.onClickEdit
-        // )}
-        >
+        <form onSubmit={handleSubmit(onClickSubmit)}>
           <S.BodyWrapper>
             <S.Box>
               <S.BrandName>상품명</S.BrandName>
               <S.BrandNameInput
                 placeholder="상품명을 작성해주세요"
-                // {...props.register("name")}
+                {...register("name")}
               />
             </S.Box>
             <S.Box>
               <S.BrandRemarks>상품 요약</S.BrandRemarks>
               <S.BrandRemarksInput
                 placeholder="상품요약을 작성해주세요"
-                // {...props.register("remarks")}
+                {...register("remarks")}
               />
             </S.Box>
             <S.Box>
               <S.BrandContents>상품 내용</S.BrandContents>
               <ReactQuill
-                // defaultValue={props.data?.fetchUseditem.contents}
-                // onChange={props.onChangeContents}
+                defaultValue={props.data?.fetchUseditem.contents}
+                onChange={onChangeContents}
                 style={{
                   width: "1419px",
                   height: "431px",
@@ -120,14 +209,14 @@ export default function BrandCreateComponent() {
               <S.BrandPrice>판매 가격</S.BrandPrice>
               <S.BrandPriceInput
                 placeholder="판매 가격을 입력해주세요"
-                // {...props.register("price")}
+                {...register("price")}
               />
             </S.Box>
             <S.Box>
               <S.BrandTags>태그 입력</S.BrandTags>
               <S.BrandTagsInput
                 placeholder="#태그 #태그 #태그"
-                // {...props.register("tags")}
+                {...register("tags")}
               />
             </S.Box>
             <S.LoctaionBox>
@@ -166,19 +255,14 @@ export default function BrandCreateComponent() {
                 </S.InnerBox>
               </S.LocationInnerBox>
             </S.LoctaionBox>
-            <S.Box>
+            <S.ImagesBox>
               <S.AttachImage>사진 첨부</S.AttachImage>
-              <S.ImageBox>
-                {/* {props.fileUrls.map((el, index) => (
-                  <Uploads02
-                    key={uuidv4()}
-                    index={index}
-                    fileUrl={el}
-                    onChangeFileUrls={props.onChangeFileUrls}
-                  />
-                ))} */}
-              </S.ImageBox>
-            </S.Box>
+              <Uploads01
+                // fileUrls={fileUrls}
+                defaultUrls={props.data?.fetchUseditem?.images}
+                onChangeFileUrls={onChangeFileUrls}
+              />
+            </S.ImagesBox>
           </S.BodyWrapper>
           <S.BtnBox>
             <S.CancelBtn

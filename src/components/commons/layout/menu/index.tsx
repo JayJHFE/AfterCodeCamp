@@ -1,10 +1,13 @@
 import * as S from "../layout.styles";
+import Link from "next/link";
 
 export default function LayoutMenu() {
   return (
     <S.MenuWrapper>
       <S.Menu>
-        <S.MenuLetter>Brand</S.MenuLetter>
+        <Link href={`/brand`}>
+          <S.MenuLetter>Brand</S.MenuLetter>
+        </Link>
         <S.MenuLetter>CATEGORY</S.MenuLetter>
         <S.MenuLetter>LIFE</S.MenuLetter>
         <S.MenuLetter>BEUATY</S.MenuLetter>

@@ -1,43 +1,60 @@
+import { useRouter } from "next/router";
+import { useDeleteUseditem } from "../../../commons/hooks/mutations/useDeleteUseditem";
+import { useFetchUseditem } from "../../../commons/hooks/queries/useFetchUseditem";
 import KakaoMapPage2 from "../../../commons/map/02";
+import CommentDetailComponent from "../../comments/detail/Comment.detail";
+import Link from "next/link";
 import * as S from "./BrandDetail.styles";
+import { useCreatePointTransactionOfBuyingAndSelling } from "../../../commons/hooks/mutations/useCreatePointTransactionOfBuyingAndSelling";
+import CommnetComponent from "../../comments/write/Comment.Write";
 
 export default function BrandDetailComponent() {
+  const router = useRouter();
+  const { data } = useFetchUseditem();
+  const { onClickDeleteItem } = useDeleteUseditem();
+  const { createPointTransactionOfBuyingAndSellingSubmit } =
+    useCreatePointTransactionOfBuyingAndSelling();
+  const onClickBuy = (useditemId: any) => () => {
+    void createPointTransactionOfBuyingAndSellingSubmit(useditemId);
+  };
+  const sanitizeHtml = require("sanitize-html");
+  const dirty = data?.fetchUseditem?.contents.replace(
+    /(?:\r\n|\r|\n|p)/g,
+    "br"
+  );
+  const sanitizedDescription = sanitizeHtml(dirty, {
+    allowedTags: false,
+    allowedAttributes: false,
+  });
   return (
     <>
       <S.DetailHeader>
         <S.DetailImage
-        //   src={
-        //     props.data?.fetchUseditem.images[0]
-        //       ? `https://storage.googleapis.com/${props.data?.fetchUseditem.images[0]}`
-        //       : "/CodecampLogo.png"
-        //   }
+          src={
+            data?.fetchUseditem?.images[0]
+              ? `https://storage.googleapis.com/${data?.fetchUseditem.images[0]}`
+              : "/images/Detail/Delete.png"
+          }
         />
         <S.DetailShort>
           <S.HeaderBox>
-            <S.BrandName>브랜드이름</S.BrandName>
+            <S.BrandName>{data?.fetchUseditem.seller?.name}</S.BrandName>
             <S.HeaderBtnBox>
-              <S.EditButton src="/images/Detail/Edit.png" />
-              <S.DeleteButton src="/images/Detail/Delete.png" />
+              <Link href={`/brand/${data?.fetchUseditem._id}/edit`}>
+                <S.EditButton src="/images/Detail/Edit.png" />
+              </Link>
+              <S.DeleteButton
+                onClick={onClickDeleteItem(String(data?.fetchUseditem._id))}
+                src="/images/Detail/Delete.png"
+              />
             </S.HeaderBtnBox>
           </S.HeaderBox>
-          <S.DetailTitle>
-            ABCDEFGHIJKLNMOPQRSTUVWXYZ
-            {/* {props.data?.fetchUseditem.name} */}
-            <S.EditButton
-            //   onClick={props.onClickMoveToEdit}
-            //   src="/EditIcon.png"
-            />
-            <S.DeleteButton
-            //   onClick={props.onClickDelete(props?.data?.fetchUseditem?._id)}
-            //   src="/DeleteIcon.png"
-            />
-          </S.DetailTitle>
+          <S.DetailTitle>{data?.fetchUseditem.name}</S.DetailTitle>
           <S.DetailPrice>
             <S.PriceBox>
               <S.SellingPrice>판매가</S.SellingPrice>
-              <S.Price>153,000</S.Price>
+              <S.Price>{data?.fetchUseditem.price}</S.Price>
               <S.Unit>원</S.Unit>
-              {/* {props.data?.fetchUseditem.price} */}
             </S.PriceBox>
             <S.PickBox>
               MY
@@ -47,37 +64,26 @@ export default function BrandDetailComponent() {
           </S.DetailPrice>
           <S.DetailRemarks>
             <S.RemarksContents>
-              {/* {props.data?.fetchUseditem?.remarks} */}
-              헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로
-              헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로
-              헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로헬로
+              {data?.fetchUseditem?.remarks}
             </S.RemarksContents>
-            <S.RemarksTags>
-              #태그 #태그 #태그
-              {/* {props.data?.fetchUseditem?.tags} */}
-            </S.RemarksTags>
+            <S.RemarksTags>{data?.fetchUseditem?.tags}</S.RemarksTags>
           </S.DetailRemarks>
           <S.DetailMenu>
             <S.Purchase>
-              <S.PurchaseName>BUY NOW</S.PurchaseName>
+              <S.PurchaseName onClick={onClickBuy(data?.fetchUseditem?._id)}>
+                BUY NOW
+              </S.PurchaseName>
             </S.Purchase>
             <S.Basket>
               <S.BasketName>SHOPPING BAG</S.BasketName>
             </S.Basket>
           </S.DetailMenu>
         </S.DetailShort>
-        {/* {props.data?.fetchUseditem.images[1] && (
-          <S.DetailImage2
-            src={`https://storage.googleapis.com/${props.data?.fetchUseditem.images[1]}`}
-          />
-        )}
-        {props.data?.fetchUseditem.images[2] && (
-          <S.DetailImage3
-            src={`https://storage.googleapis.com/${props.data?.fetchUseditem.images[2]}`}
-          />
-        )} */}
       </S.DetailHeader>
       <S.DetailLetter>DETAIL</S.DetailLetter>
+      <S.DetailContent
+        dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+      ></S.DetailContent>
       <S.DetailMap>
         <S.Title>배송/교환/반품/AS 관련 유의사항</S.Title>
         <S.SubTitle>
@@ -125,6 +131,12 @@ export default function BrandDetailComponent() {
         </S.DetailAlert>
       </S.AlertBox>
       <S.DetailLetter>Q&A</S.DetailLetter>
+      <CommnetComponent />
+      {/* <S.CommentTextArea placeholder="내용을 입력해 주세요."></S.CommentTextArea>
+      <S.BtnBox>
+        <S.SubmitBtn>작성하기</S.SubmitBtn>
+      </S.BtnBox> */}
+      <CommentDetailComponent />
     </>
   );
 }

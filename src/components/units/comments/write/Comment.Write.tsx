@@ -2,27 +2,25 @@ import * as S from "./Commetn.Write.styles";
 
 export default function CommnetComponent() {
   return (
-    <S.ProductInfoWriteWrap>
+    <S.CommnetWriteWrap>
       <S.TextareaWrap
       //   onSubmit={handleSubmit(onSubmitComment)}
       >
         <textarea
-        //   {...register("contents")}
-        //   defaultValue={props.defaultValue}
+          placeholder="내용을 입력해주세요"
+          //   {...register("contents")}
+          //   defaultValue={props.defaultValue}
         ></textarea>
         <S.CommentBtnBox>
           {/* {props.isEdit && ( */}
-          <S.CancleBtn
+          <S.SubmitBtn
           // onClick={props.onClickUpdateComment("")}
           >
-            취소하기
-          </S.CancleBtn>
+            작성하기
+          </S.SubmitBtn>
           {/* )} */}
-          <S.CommentBtn>
-            {/* {props.isEdit ? "수정하기" : "작성하기"} */}
-          </S.CommentBtn>
         </S.CommentBtnBox>
       </S.TextareaWrap>
-    </S.ProductInfoWriteWrap>
+    </S.CommnetWriteWrap>
   );
 }

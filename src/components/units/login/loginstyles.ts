@@ -21,15 +21,17 @@ export const LoginInfo = styled.div`
   width: 774px;
   height: 136px;
 `;
-export const LoginButton = styled.div`
+export const LoginButton = styled.button`
   width: 186px;
   heihgt: 136px;
   text-align: center;
   font-fmaily: "NotoSansKR-700";
   font-size: 20px;
-  padding-top: 56px;
   background-color: #000000;
   color: #ffffff;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const IdInput = styled.input`
   width: 611px;

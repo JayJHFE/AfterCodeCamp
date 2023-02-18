@@ -34,6 +34,15 @@ export const Box = styled.div`
   padding-bottom: 26px;
   border-bottom: 1px solid #999999;
 `;
+export const ImagesBox = styled.div`
+  width: 1738px;
+  display: column;
+  flex-direction: row;
+  padding-top: 28px;
+  padding-left: 43px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #999999;
+`;
 export const BrandName = styled.span`
   font-family: "NotoSansKR-500";
   font-size: 24px;
@@ -105,6 +114,7 @@ export const AttachImage = styled.span`
   font-size: 24px;
   display: flex;
   color: #000000;
+  margin-bottom: 47px;
 `;
 export const ImageBox = styled.div`
   width: 600px;

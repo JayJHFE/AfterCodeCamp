@@ -73,7 +73,7 @@ export const BtnBox = styled.div`
   margin-bottom: 101px;
   justify-content: space-between;
 `;
-export const Cancel = styled.div`
+export const Cancel = styled.button`
   width: 186px;
   height: 56px;
   background-color: #ffffff;
@@ -82,8 +82,11 @@ export const Cancel = styled.div`
   padding-top: 18px;
   font-fmaily: "NotoSansKR-700";
   font-size: 20px;
+  :hover {
+    pointer: cursor;
+  }
 `;
-export const Confirm = styled.div`
+export const Confirm = styled.button`
   width: 186px;
   height: 56px;
   background-color: #000000;
@@ -92,4 +95,7 @@ export const Confirm = styled.div`
   font-size: 20px;
   color: #ffffff;
   padding-top: 18px;
+  :hover {
+    pointer: cursor;
+  }
 `;
