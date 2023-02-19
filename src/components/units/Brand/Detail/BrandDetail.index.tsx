@@ -131,12 +131,12 @@ export default function BrandDetailComponent() {
         </S.DetailAlert>
       </S.AlertBox>
       <S.DetailLetter>Q&A</S.DetailLetter>
-      <CommnetComponent />
+      <CommnetComponent useditemId={data?.fetchUseditem?._id} />
       {/* <S.CommentTextArea placeholder="내용을 입력해 주세요."></S.CommentTextArea>
       <S.BtnBox>
         <S.SubmitBtn>작성하기</S.SubmitBtn>
       </S.BtnBox> */}
-      <CommentDetailComponent />
+      <CommentDetailComponent useditemId={data?.fetchUseditem?._id} />
     </>
   );
 }

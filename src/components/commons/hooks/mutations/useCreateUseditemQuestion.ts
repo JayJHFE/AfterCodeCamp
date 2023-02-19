@@ -24,7 +24,10 @@ export const useCreateUseditemQuestion = () => {
     IMutationCreateUseditemQuestionArgs
   >(CREATE_USER_ITEM_QUESTION);
 
-  const createUseditemQuestionSubmit = async (data, useditemId: string) => {
+  const createUseditemQuestionSubmit = async (
+    data: any,
+    useditemId: string
+  ) => {
     try {
       await createUseditemQuestion({
         variables: {
@@ -34,7 +37,6 @@ export const useCreateUseditemQuestion = () => {
           },
         },
         update(cache, { data }) {
-          // cache를 수정하는 메소드
           cache.modify({
             fields: {
               fetchUseditemQuestions: (prev) => {
@@ -44,7 +46,6 @@ export const useCreateUseditemQuestion = () => {
           });
         },
       });
-      // console.log(result);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

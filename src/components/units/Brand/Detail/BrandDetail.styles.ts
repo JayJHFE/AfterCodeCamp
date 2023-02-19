@@ -7,7 +7,12 @@ export const DetailHeader = styled.div`
   margin-top: 68px;
   margin-left: 56px;
 `;
-export const DetailContent = styled.div`s`;
+export const DetailContent = styled.div`
+  width: 853px;
+  display: flex;
+  margin-left: 215px;
+  margin-top: 50px;
+`;
 export const DetailImage = styled.img`
   width: 863px;
   height: 611px;

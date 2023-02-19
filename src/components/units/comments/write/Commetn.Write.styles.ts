@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
-export const CommnetWriteWrap = styled.div`
-  // padding-top: 72px;
-`;
+export const CommnetWriteWrap = styled.div``;
 export const ProductInfoWriteWrap = styled.div`
   padding-top: 30px;
 `;
@@ -37,4 +35,3 @@ export const SubmitBtn = styled.button`
   background-color: #000000;
   color: #ffffff;
 `;
-export const CommentBtn = styled.button``;

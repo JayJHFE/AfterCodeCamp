@@ -19,7 +19,7 @@ export const useDeleteUseditem = () => {
     IMutationDeleteUseditemArgs
   >(DELETE_USED_ITEM);
 
-  const onClickDeleteItem = (useditemId: string) => async (event) => {
+  const onClickDeleteItem = (useditemId: string) => async (event: any) => {
     try {
       await deleteUseditem({
         variables: {

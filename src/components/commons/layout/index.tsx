@@ -4,6 +4,10 @@ import LayoutFooter from "./footer";
 import LayoutMenu from "./menu";
 import * as S from "./layout.styles";
 import LayoutBlackHeader from "./blackheader";
+import { useRecoilState } from "recoil";
+import { infoUserState } from "../../../commons/stores";
+import { useFetchUserLoggedIn } from "../hooks/queries/useFetchUserLoggedIn";
+import { useEffect } from "react";
 
 interface ILayoutProps {
   children: JSX.Element;
@@ -17,6 +21,11 @@ export default function Layout(props: ILayoutProps) {
   // const isHiddenForLogin = HIDDEN_FOR_LOGIN.includes(router.asPath);
   const isHiddenAll = HIDDEN_ALL.includes(router.asPath);
   const isShownBlackHeader = SHOW_BLACK_HEADER.includes(router.asPath);
+  const { data } = useFetchUserLoggedIn();
+  const [infoUser, setInfoUser] = useRecoilState(infoUserState);
+  useEffect(() => {
+    setInfoUser({ ...data?.fetchUserLoggedIn });
+  }, [data]);
 
   return (
     <>

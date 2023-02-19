@@ -25,7 +25,6 @@ export default function BrandCreateComponent(props: IWriteProps) {
   const { uploadFile } = useUploadFile();
   const { createSubmit } = useCreateUsedItem();
   const { updateSubmit } = useUpdateUsedItem();
-  // const [addressSearchResult, setAddressSearchResult] = useState<string>("");
 
   const { register, setValue, trigger, reset, handleSubmit } = useForm({
     // resolver: yupResolver(ProductItemSchema),
@@ -36,13 +35,6 @@ export default function BrandCreateComponent(props: IWriteProps) {
       contents: "",
       price: 0,
       tags: [],
-      // useditemAddress: {
-      //   zipcode: "",
-      //   address: "",
-      //   addressDetail: "",
-      //   lat: 0,
-      //   lng: 0,
-      // },
       images: ["", ""],
     },
   });
@@ -55,36 +47,14 @@ export default function BrandCreateComponent(props: IWriteProps) {
         contents: props.data?.fetchUseditem?.contents,
         price: props.data?.fetchUseditem?.price,
         tags: [...props.data?.fetchUseditem.tags],
-        // useditemAddress: {
-        //   zipcode: props.data?.fetchUseditem?.useditemAddress?.zipcode,
-        //   address: props.data?.fetchUseditem?.useditemAddress?.address,
-        //   addressDetail:
-        //     props.data?.fetchUseditem?.useditemAddress?.addressDetail,
-        // },
         images: [...props.data?.fetchUseditem.images],
       };
       reset({ ...resetData });
-      // setAddressSearchResult(
-      //   props.data?.fetchUseditem?.useditemAddress?.address
-      // );
     }
   }, [props.data]);
 
-  const toggleModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-
-  // const handleComplete = (data: Address) => {
-  //   setValue("useditemAddress.zipcode", data.zonecode);
-  //   setValue("useditemAddress.address", data.address);
-  //   setAddressSearchResult(data.address);
-  //   setValue("useditemAddress.addressDetail", "");
-  //   toggleModal();
-  // };
-
   const onChangeContents = (value: string) => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
-    // void trigger("contents");
   };
 
   const onChangeFileUrls = (fileUrl: File, index: number) => {
@@ -163,15 +133,6 @@ export default function BrandCreateComponent(props: IWriteProps) {
 
   return (
     <>
-      {/* {props.AddressModalOpen && (
-        <S.ZipModal
-          open={true}
-          onOk={props.handleComplete}
-          onCancel={props.onToggleAddressModal}
-        >
-          <S.SearchZipCodeInput onComplete={props.handleComplete} />
-        </S.ZipModal>
-      )} */}
       <S.Body>
         <S.Title>{isEdit === false ? "상품등록" : "상품수정"}</S.Title>
         <form onSubmit={handleSubmit(onClickSubmit)}>
@@ -225,52 +186,24 @@ export default function BrandCreateComponent(props: IWriteProps) {
                 <KakaoMapPage />
                 <S.InnerBox>
                   <S.ZipCodeBox>
-                    <S.InfoBoxZipCode
-                      type="text"
-                      placeholder="07250"
-                      // value={
-                      //   props.zipcode ||
-                      //   (props.data?.fetchUseditem.useditemAddress.zipcode ?? "")
-                      // }
-                    />
-                    <S.ZipButton
-                      type="button"
-                      // onClick={props.onClickSearchZipCode}
-                    >
-                      우편번호검색
-                    </S.ZipButton>
+                    <S.InfoBoxZipCode type="text" placeholder="07250" />
+                    <S.ZipButton type="button">우편번호검색</S.ZipButton>
                   </S.ZipCodeBox>
-                  <S.AddressInput1
-                    type="text"
-                    readOnly
-                    // value={
-                    //   props.address ||
-                    //   (props.data?.fetchUseditem.useditemAddress.address ?? "")
-                    // }
-                  />
-                  <S.AddressInput2
-                    type="text"
-                    // {...props.register("addressDetail")}
-                  />
+                  <S.AddressInput1 type="text" readOnly />
+                  <S.AddressInput2 type="text" />
                 </S.InnerBox>
               </S.LocationInnerBox>
             </S.LoctaionBox>
             <S.ImagesBox>
               <S.AttachImage>사진 첨부</S.AttachImage>
               <Uploads01
-                // fileUrls={fileUrls}
                 defaultUrls={props.data?.fetchUseditem?.images}
                 onChangeFileUrls={onChangeFileUrls}
               />
             </S.ImagesBox>
           </S.BodyWrapper>
           <S.BtnBox>
-            <S.CancelBtn
-              type="button"
-              // onClick={props.onClickMoveToCancel}
-            >
-              취소
-            </S.CancelBtn>
+            <S.CancelBtn type="button">취소</S.CancelBtn>
             <S.SubmitBtn>등록</S.SubmitBtn>
           </S.BtnBox>
         </form>

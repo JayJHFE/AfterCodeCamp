@@ -30,7 +30,10 @@ export const useUpdateUseditemQuestion = () => {
     IMutationUpdateUseditemQuestionArgs
   >(UPDATE_USER_ITEM_QUESTION);
 
-  const updateUseditemQuestionSubmit = async (data, useditemQuestionId) => {
+  const updateUseditemQuestionSubmit = async (
+    data: any,
+    useditemQuestionId: any
+  ) => {
     try {
       await updateUseditemQuestion({
         variables: {
