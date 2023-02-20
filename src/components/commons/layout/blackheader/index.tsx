@@ -8,7 +8,9 @@ export default function LayoutBlackHeader() {
   const isLoginHeader = LOGIN_HEADER.includes(router.asPath);
   return (
     <S.BlackHeaderWrapper>
-      <S.BlackHeaderLogo src="/images/header/header-logo-white.png" />
+      <Link href={"/"}>
+        <S.BlackHeaderLogo src="/images/header/header-logo-white.png" />
+      </Link>
       <S.BlackHeaderMenu>
         <Link href={"/brand"}>
           <S.BlackHeaderMenuLetter>Brand</S.BlackHeaderMenuLetter>

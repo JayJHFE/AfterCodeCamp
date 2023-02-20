@@ -106,6 +106,10 @@ export const PickImage = styled.img`
   margin: 0px 7px;
   transform: tranSlateY(5px);
 `;
+export const PickedCount = styled.span`
+  font-size: 14px;
+  margin-right: 5px;
+`;
 export const DetailRemarks = styled.div`
   width: 853px;
   margin-bottom: 31px;

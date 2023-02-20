@@ -11,6 +11,7 @@ export default function Uploads01(props: IUploadProps) {
   // console.log(props.defaultUrls);
   // const [uploadFile] = useMutation(UPLOAD_FILE);
   const [imgUrl, setImgUrl] = useState<string[]>(["", ""]);
+
   useEffect(() => {
     if (!props?.defaultUrls) return;
     const tempImgUrl = [...imgUrl];

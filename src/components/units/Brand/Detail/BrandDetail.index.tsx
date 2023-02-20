@@ -7,13 +7,20 @@ import Link from "next/link";
 import * as S from "./BrandDetail.styles";
 import { useCreatePointTransactionOfBuyingAndSelling } from "../../../commons/hooks/mutations/useCreatePointTransactionOfBuyingAndSelling";
 import CommnetComponent from "../../comments/write/Comment.Write";
+import { useAuth } from "../../../commons/hooks/auth/useAuth";
+import { useRecoilState } from "recoil";
+import { infoUserState } from "../../../../commons/stores";
+import { useToggleUseditemPick } from "../../../commons/hooks/mutations/useToggleUseditemPick";
 
 export default function BrandDetailComponent() {
+  useAuth();
   const router = useRouter();
+  const { onClickTogglePick } = useToggleUseditemPick();
   const { data } = useFetchUseditem();
   const { onClickDeleteItem } = useDeleteUseditem();
   const { createPointTransactionOfBuyingAndSellingSubmit } =
     useCreatePointTransactionOfBuyingAndSelling();
+  const [infoUser] = useRecoilState(infoUserState);
   const onClickBuy = (useditemId: any) => () => {
     void createPointTransactionOfBuyingAndSellingSubmit(useditemId);
   };
@@ -39,26 +46,35 @@ export default function BrandDetailComponent() {
         <S.DetailShort>
           <S.HeaderBox>
             <S.BrandName>{data?.fetchUseditem.seller?.name}</S.BrandName>
-            <S.HeaderBtnBox>
-              <Link href={`/brand/${data?.fetchUseditem._id}/edit`}>
-                <S.EditButton src="/images/Detail/Edit.png" />
-              </Link>
-              <S.DeleteButton
-                onClick={onClickDeleteItem(String(data?.fetchUseditem._id))}
-                src="/images/Detail/Delete.png"
-              />
-            </S.HeaderBtnBox>
+            {infoUser._id === data?.fetchUseditem.seller?._id && (
+              <>
+                <S.HeaderBtnBox>
+                  <Link href={`/brand/${data?.fetchUseditem._id}/edit`}>
+                    <S.EditButton src="/images/Detail/Edit.png" />
+                  </Link>
+                  <S.DeleteButton
+                    onClick={onClickDeleteItem(String(data?.fetchUseditem._id))}
+                    src="/images/Detail/Delete.png"
+                  />
+                </S.HeaderBtnBox>
+              </>
+            )}
           </S.HeaderBox>
           <S.DetailTitle>{data?.fetchUseditem.name}</S.DetailTitle>
           <S.DetailPrice>
             <S.PriceBox>
               <S.SellingPrice>판매가</S.SellingPrice>
-              <S.Price>{data?.fetchUseditem.price}</S.Price>
+              <S.Price>
+                {data?.fetchUseditem.price
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </S.Price>
               <S.Unit>원</S.Unit>
             </S.PriceBox>
-            <S.PickBox>
+            <S.PickBox onClick={onClickTogglePick(data?.fetchUseditem?._id)}>
               MY
               <S.PickImage src="/images/Detail/Pick.png" />
+              <S.PickedCount>{data?.fetchUseditem.pickedCount}</S.PickedCount>
               Product
             </S.PickBox>
           </S.DetailPrice>

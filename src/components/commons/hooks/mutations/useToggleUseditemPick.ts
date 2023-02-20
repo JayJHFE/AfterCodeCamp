@@ -1,9 +1,8 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import {
   IMutation,
   IMutationToggleUseditemPickArgs,
-  IQuery,
-  IQueryFetchUseditemsIPickedArgs,
 } from "../../../../commons/types/generated/types";
 import { FETCH_USED_ITEM } from "../queries/useFetchUseditem";
 
@@ -34,15 +33,7 @@ export const useToggleUseditemPick = () => {
           },
         ],
       });
-      const likeList = useditemId;
-      const likeLists = JSON.parse(localStorage.getItem("likeLists") ?? "[]");
-      if (!likeLists.includes(likeList)) {
-        likeLists.push(likeList);
-      } else {
-        const toggleIndex = likeLists.indexOf(likeList);
-        likeLists.splice(toggleIndex, 1);
-      }
-      localStorage.setItem("likeLists", JSON.stringify(likeLists));
+      Modal.success({ content: "상품이 찜 되었습니다." });
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

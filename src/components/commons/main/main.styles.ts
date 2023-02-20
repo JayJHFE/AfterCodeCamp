@@ -1,9 +1,24 @@
 import styled from "@emotion/styled";
+import Slider from "react-slick";
 
 export const CarouselWrapper = styled.div`
+  // width: 1920px;
+  // height: 750px;
+  // display: flex;
+  // flex-direction: row;
+  // background-color: #c4c4c4;
+`;
+export const Box1 = styled.div`
   width: 1920px;
   height: 750px;
-  background-color: #c4c4c4;
+`;
+export const Box2 = styled.div`
+  width: 1920px;
+  height: 750px;
+`;
+export const Box3 = styled.div`
+  width: 1920px;
+  height: 750px;
 `;
 export const BodyWrapper = styled.div``;
 export const NewArrival = styled.div`

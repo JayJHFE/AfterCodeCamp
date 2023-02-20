@@ -12,20 +12,23 @@ import { useForm } from "react-hook-form";
 // import { yupResolver } from "@hookform/resolvers/yup";
 import { IUseItemFormData, IWriteProps } from "./BrandCreate.types";
 import Uploads01 from "../../../commons/upload/01/Upload01.index";
+import { useAuth } from "../../../commons/hooks/auth/useAuth";
+import { Modal } from "antd";
+import { useRouter } from "next/router";
 
 const ReactQuill = dynamic(async () => await import("react-quill"), {
   ssr: false,
 });
 
 export default function BrandCreateComponent(props: IWriteProps) {
-  console.log(props.data);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const router = useRouter();
   const [isEdit, setIsEdit] = useRecoilState(isEditState);
   const [files, setFiles] = useState<File[]>([]);
   const { uploadFile } = useUploadFile();
   const { createSubmit } = useCreateUsedItem();
   const { updateSubmit } = useUpdateUsedItem();
 
+  useAuth();
   const { register, setValue, trigger, reset, handleSubmit } = useForm({
     // resolver: yupResolver(ProductItemSchema),
     mode: "onChange",
@@ -72,9 +75,14 @@ export default function BrandCreateComponent(props: IWriteProps) {
     setValue("images", resultUrls);
     if (!props.isEdit) {
       void createSubmit(data, resultUrls);
+      Modal.success({ content: "상품이 등록되었습니다" });
     } else {
       void updateSubmit(props.useditemId, data, resultUrls);
+      Modal.success({ content: "상품이 수정되었습니다" });
     }
+  };
+  const onClickMovetoBrandMain = () => {
+    router.push("/brand");
   };
   const modules = {
     toolbar: [
@@ -203,8 +211,10 @@ export default function BrandCreateComponent(props: IWriteProps) {
             </S.ImagesBox>
           </S.BodyWrapper>
           <S.BtnBox>
-            <S.CancelBtn type="button">취소</S.CancelBtn>
-            <S.SubmitBtn>등록</S.SubmitBtn>
+            <S.CancelBtn type="button" onClick={onClickMovetoBrandMain}>
+              취소
+            </S.CancelBtn>
+            <S.SubmitBtn>{props.isEdit ? "수정" : "등록"}</S.SubmitBtn>
           </S.BtnBox>
         </form>
       </S.Body>

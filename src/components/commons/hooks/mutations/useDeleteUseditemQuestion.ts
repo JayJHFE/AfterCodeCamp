@@ -1,4 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import {
   IMutation,
   IMutationDeleteUseditemQuestionArgs,
@@ -8,7 +9,7 @@ interface IRef {
   __ref: string;
 }
 
-const DELETE_USED_ITEM = gql`
+const DELETE_USED_ITEM_QUESTION = gql`
   mutation deleteUseditemQuestion($useditemQuestionId: ID!) {
     deleteUseditemQuestion(useditemQuestionId: $useditemQuestionId)
   }
@@ -18,7 +19,7 @@ export const useDeleteUseditemQuestion = () => {
   const [deleteUseditemQuestion] = useMutation<
     Pick<IMutation, "deleteUseditemQuestion">,
     IMutationDeleteUseditemQuestionArgs
-  >(DELETE_USED_ITEM);
+  >(DELETE_USED_ITEM_QUESTION);
 
   const onClickDeleteItemQuestion = (useditemQuestionId) => async (event) => {
     try {
@@ -40,6 +41,7 @@ export const useDeleteUseditemQuestion = () => {
           });
         },
       });
+      Modal.success({ content: "댓글이 삭제되었습니다" });
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

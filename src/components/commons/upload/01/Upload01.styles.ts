@@ -54,11 +54,11 @@ export const InputFile = styled.div`
     cursor: pointer;
   }
   & > img {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: auto;
-    height: 100%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    width: 180px;
+    height: 180px;
+    transform: translate(-10%, -10%);
   }
 `;

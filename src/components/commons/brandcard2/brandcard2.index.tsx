@@ -23,7 +23,11 @@ export default function BrandCard2(props: any) {
         <S.CardBody>
           <S.CardTitle>
             <S.TagSale>7 %</S.TagSale>
-            <S.Price>{props.data?.price}</S.Price>
+            <S.Price>
+              {props.data?.price
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </S.Price>
           </S.CardTitle>
           <S.BrandName>{props.data?.name}</S.BrandName>
           <S.SubTitle>{props.data?.remarks}</S.SubTitle>

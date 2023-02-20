@@ -3,7 +3,6 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useRecoilState } from "recoil";
 import { infoUserState } from "../../../../commons/stores";
 import { useDeleteUseditemQuestion } from "../../../commons/hooks/mutations/useDeleteUseditemQuestion";
-import { useFetchUseditemQuestionAnswers } from "../../../commons/hooks/queries/useFetchUseditemQuestionAnswers";
 import { useFetchUseditemQuestions } from "../../../commons/hooks/queries/useFetchUseditemQuestions";
 import EditCommentComponent from "../edit/Comment.edit";
 import ReCommentComponent from "../recomment/Recomment";
@@ -16,10 +15,7 @@ export default function CommentDetailComponent(props: ICommentDetailProps) {
   const [isUpdateId, setIsUpdateId] = useState("");
   const { onClickDeleteItemQuestion } = useDeleteUseditemQuestion();
   const [infoUser] = useRecoilState(infoUserState);
-  const [recommentOpen, setRecommentOpen] = useState(false);
-  console.log(infoUser);
-  console.log(infoUser._id);
-  console.log(data?.fetchUseditemQuestions[0].user._id);
+  const [recommentOpen, setRecommentOpen] = useState("");
   const onLoadMore = () => {
     if (data === undefined) return;
 
@@ -45,8 +41,10 @@ export default function CommentDetailComponent(props: ICommentDetailProps) {
   const onClickUpdateComment = (updateId: string) => (event: any) => {
     setIsUpdateId(updateId);
   };
-  const onClickRecomment = () => {
-    setRecommentOpen((prev) => !prev);
+  const onClickRecomment = (data: any) => () => {
+    console.log(data);
+    setRecommentOpen(data);
+    console.log(recommentOpen);
   };
 
   return (
@@ -86,7 +84,7 @@ export default function CommentDetailComponent(props: ICommentDetailProps) {
                             data?.fetchUseditemQuestions[idx].user._id && (
                             <>
                               <S.RecommentBtn
-                                onClick={onClickRecomment}
+                                onClick={onClickRecomment(el._id)}
                               ></S.RecommentBtn>
                             </>
                           )}
@@ -95,11 +93,15 @@ export default function CommentDetailComponent(props: ICommentDetailProps) {
                     </S.UpperComment>
                     <S.LowerComment>
                       <RecommnetDetail QuestionId={el._id} />
-                      {recommentOpen ? (
-                        <ReCommentComponent
-                          QuestionId={el._id}
-                          onClickRecomment={onClickRecomment}
-                        />
+                      {recommentOpen ===
+                      data?.fetchUseditemQuestions[idx]._id ? (
+                        <S.RecommentWrapper>
+                          <ReCommentComponent
+                            QuestionId={el._id}
+                            onClickRecomment={onClickRecomment}
+                            setRecommentOpen={setRecommentOpen}
+                          />
+                        </S.RecommentWrapper>
                       ) : (
                         <></>
                       )}

@@ -87,10 +87,34 @@ export const UpperComment = styled.div`
   display: flex;
 `;
 export const LowerComment = styled.div``;
+export const RecommentWrapper = styled.div`
+  padding-left: 125px;
+`;
 export const RecommentBtn = styled.div`
   width: 18px;
   height: 18px;
   margin-left: 18px;
   background-image: url("/images/Detail/Answer.png");
   transform: tranSlateY(2px);
+`;
+export const DeleteBtn = styled.div`
+  width: 18px;
+  height: 18px;
+  background-image: url("/images/Detail/Delete.png");
+  background-size: cover;
+  margin-left: 15px;
+`;
+export const BtnWrapper = styled.div`
+  display: flex;
+`;
+export const EditBtn = styled.div`
+  width: 18px;
+  height: 18px;
+  background-image: url("/images/Detail/Edit.png");
+  background-size: cover;
+`;
+export const UpperRecomment = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;

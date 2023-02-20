@@ -1,4 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import {
   IMutation,
@@ -41,6 +42,7 @@ export const useDeleteUseditem = () => {
           });
         },
       });
+      Modal.success({ content: "상품이 삭제되었습니다" });
       void router.push(`/brand`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);

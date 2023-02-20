@@ -1,8 +1,12 @@
 import styled from "@emotion/styled";
 
+interface IRecommentStylesProps {
+  margn: boolean;
+}
+
 export const ReComment = styled.div`
   width: 1460px;
-  margin-left: 125px;
+  // margin-left: 125px;
   padding-top: 29px;
 `;
 export const CommentInput = styled.input`
