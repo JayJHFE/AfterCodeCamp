@@ -15,7 +15,7 @@ export default function BrandCard2(props: any) {
           src={
             props.data?.images[0]
               ? `https://storage.googleapis.com/${props.data?.images[0]}`
-              : "/Delete.png"
+              : "/images/Detail/NoImage.jpg"
           }
         />
         {/* <S.CardTest></S.CardTest> */}

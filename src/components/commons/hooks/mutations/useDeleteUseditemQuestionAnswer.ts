@@ -25,25 +25,22 @@ export const useDeleteUseditemQuestionAnswer = () => {
   >(DELETE_USED_ITEM_ANSWER);
 
   const onDeleteItemQuestionAnswer =
-    (useditemQuestionAnswerId) => async (event) => {
+    (useditemQuestionAnswerId: any, useditemQuestionId: any) =>
+    async (event) => {
       try {
         await deleteUseditemQuestionAnswer({
           variables: {
             useditemQuestionAnswerId,
           },
-          update(cache, { data }) {
-            cache.modify({
-              fields: {
-                fetchUseditemQuestionsAnswers: (prev: IRef[]) => {
-                  const deletedId = data.deleteUseditemQuestionAnswer;
-                  const filteredPrev = prev.filter(
-                    (el) => !el.__ref.includes(deletedId)
-                  );
-                  return [...filteredPrev];
-                },
+          refetchQueries: [
+            {
+              query: FETCH_USED_ITEM_QUESTION_ANSWERS,
+              variables: {
+                useditemQuestionId,
+                page: 1,
               },
-            });
-          },
+            },
+          ],
         });
         Modal.success({ content: "답변이 삭제되었습니다" });
       } catch (error) {

@@ -31,7 +31,8 @@ export default function RecommnetDetail(props: any) {
                         <S.EditBtn onClick={onClickEditRecomment}></S.EditBtn>
                         <S.DeleteBtn
                           onClick={onDeleteItemQuestionAnswer(
-                            String(data.fetchUseditemQuestionAnswers[idx]._id)
+                            String(data.fetchUseditemQuestionAnswers[idx]._id),
+                            String(props.QuestionId)
                           )}
                         ></S.DeleteBtn>
                       </S.BtnWrapper>

@@ -11,7 +11,6 @@ export default function ReCommentComponent(props: any) {
     useCreateUseditemQuestionAnswer();
   const { updateUseditemQuestionAnswerSubmit } =
     useUpdateUseditemQuestionAnswer();
-  const [infoUser] = useRecoilState(infoUserState);
   const { register, handleSubmit, reset } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -20,7 +19,11 @@ export default function ReCommentComponent(props: any) {
   });
   const onClickQuestionAnswer = (data: any) => {
     if (props.isEditRecomment === true) {
-      void updateUseditemQuestionAnswerSubmit(data, props.QuestionAnswerId);
+      void updateUseditemQuestionAnswerSubmit(
+        data,
+        String(props.QuestionAnswerId),
+        String(props.QuestionId)
+      );
       props.setIsEditRecomment((prev) => !prev);
       Modal.success({
         content: "답글이 수정되었습니다",

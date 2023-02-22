@@ -7,7 +7,7 @@ export const useAuth = () => {
   useEffect(() => {
     if (localStorage.getItem("accessToken") === null) {
       Modal.success({ content: "로그인이 필요합니다" });
-      void router.push("/login");
+      void router.push("/");
     }
   }, []);
 };

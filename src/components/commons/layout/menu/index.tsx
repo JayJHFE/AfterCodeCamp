@@ -8,12 +8,22 @@ export default function LayoutMenu() {
         <Link href={`/brand`}>
           <S.MenuLetter>Brand</S.MenuLetter>
         </Link>
-        <S.MenuLetter>CATEGORY</S.MenuLetter>
-        <S.MenuLetter>LIFE</S.MenuLetter>
-        <S.MenuLetter>BEUATY</S.MenuLetter>
+        <Link href={`/brand`}>
+          <S.MenuLetter>CATEGORY</S.MenuLetter>
+        </Link>
+        <Link href={`/brand`}>
+          <S.MenuLetter>LIFE</S.MenuLetter>
+        </Link>
+        <Link href={`/brand`}>
+          <S.MenuLetter>BEUATY</S.MenuLetter>
+        </Link>
         <S.MenuLetter>|</S.MenuLetter>
-        <S.MenuLetter>#STYLE</S.MenuLetter>
-        <S.MenuLetter>EVENT</S.MenuLetter>
+        <Link href={`/brand`}>
+          <S.MenuLetter>#STYLE</S.MenuLetter>
+        </Link>
+        <Link href={`/brand`}>
+          <S.MenuLetter>EVENT</S.MenuLetter>
+        </Link>
       </S.Menu>
     </S.MenuWrapper>
   );

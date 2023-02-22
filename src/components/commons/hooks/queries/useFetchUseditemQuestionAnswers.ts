@@ -35,6 +35,5 @@ export const useFetchUseditemQuestionAnswers = (useditemQuestionId: any) => {
 
   return {
     data,
-    // fetchMore,
   };
 };

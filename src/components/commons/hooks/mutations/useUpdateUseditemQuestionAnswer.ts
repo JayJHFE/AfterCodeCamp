@@ -19,6 +19,9 @@ export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
   }
 `;
 
+interface IRef {
+  __ref: string;
+}
 export const useUpdateUseditemQuestionAnswer = () => {
   const [updateUseditemQuestionAnswer] = useMutation<
     Pick<IMutation, "updateUseditemQuestionAnswer">,
@@ -27,7 +30,8 @@ export const useUpdateUseditemQuestionAnswer = () => {
 
   const updateUseditemQuestionAnswerSubmit = async (
     data: any,
-    useditemQuestionAnswerId: any
+    useditemQuestionAnswerId: any,
+    useditemQuestionId: any
   ) => {
     try {
       await updateUseditemQuestionAnswer({
