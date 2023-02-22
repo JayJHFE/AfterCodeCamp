@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 
+interface IIsdata {
+  isdata: string;
+}
+
 export const CommentWrapper = styled.div`
   width: 1700px;
   height: 800px;
@@ -82,6 +86,7 @@ export const RecommentDate = styled.div`
 export const RecommentContent = styled.div`
   font-family: "NotoSansKR-400";
   font-size: 15px;
+  word-break: break-all;
 `;
 export const UpperComment = styled.div`
   display: flex;
@@ -117,4 +122,8 @@ export const UpperRecomment = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+export const RecommentContainer = styled.div`
+  height: 100px;
+  overflow: auto;
 `;
