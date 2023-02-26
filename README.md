@@ -4,23 +4,15 @@
 
 ![CafemoaLogo.png](https://user-images.githubusercontent.com/114391411/221416282-436bec0d-c5d7-48b3-bb5d-cea5406b6551.png)
 
-`Team` 커피원두는역시노원두
+`Team` 개인과제
 
-`Project` 카페모아
+`Project` 코드캠프 수료 과제
 
-`Members` 김예은, 김동은, 이주현, 홍성준, 김태현, 김상현
-
-`Service` https://cafemoa.shop
-
-`Client` https://github.com/code-bootcamp/cafemoa-client
-
-`Server` https://github.com/code-bootcamp/cafemoa-server
+`Service` https://localhost:3000
 
 ## Project
 
 ### 프로젝트 소개
-
-[https://youtu.be/GA33lvfLsz0](https://youtu.be/GA33lvfLsz0)
 
 지난 10년간 카페들이 우후죽순으로 늘어나고있습니다.
 
