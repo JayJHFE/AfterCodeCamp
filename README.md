@@ -2,7 +2,7 @@
 
 ## 개요
 
-![CafemoaLogo.png](https://user-images.githubusercontent.com/114391411/214553531-ba69bf9a-35d7-4fd6-96d0-2d30452cf247.png)
+![CafemoaLogo.png](https://user-images.githubusercontent.com/114391411/221416282-436bec0d-c5d7-48b3-bb5d-cea5406b6551.png)
 
 `Team` 커피원두는역시노원두
 
