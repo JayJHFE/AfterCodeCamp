@@ -22,7 +22,7 @@
 
 - 로그인
     
-    ![로그인.gif](https://user-images.githubusercontent.com/114391411/221417582-4f46b127-1372-4afe-8991-57965833c729.gif)
+    ![로그인.gif](https://user-images.githubusercontent.com/114391411/221417859-950a0280-2149-4cfa-b154-77f0e1668829.gif)
     
     - refreshToken이 아닌 비교적 간단한 AccessToken으로 로그인 페이지를 구현하였습니다.
     
