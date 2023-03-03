@@ -4,9 +4,9 @@
 
 ![dingco-logo 1.png](https://user-images.githubusercontent.com/114391411/221416282-436bec0d-c5d7-48b3-bb5d-cea5406b6551.png)
 
-`**Project**` 수료과제
+`Project` 수료과제
 
-`**Members**` 이주현
+`Members` 이주현
 
 ## 프로젝트 소개
 
