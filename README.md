@@ -1,5 +1,5 @@
 
-![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=코드캠프-프로젝트&fontSize=90)
+![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&&reversal=truesection=header&text=코드캠프-프로젝트&fontSize=90)
 
 ![dingco-logo 1.png](https://user-images.githubusercontent.com/114391411/221416282-436bec0d-c5d7-48b3-bb5d-cea5406b6551.png)
 
