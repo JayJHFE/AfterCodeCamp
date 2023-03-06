@@ -3,15 +3,19 @@
 
 ![dingco-logo 1.png](https://user-images.githubusercontent.com/114391411/221416282-436bec0d-c5d7-48b3-bb5d-cea5406b6551.png)
 
-`Project` 수료과제
-
-`Members` 이주현
-
 ## 프로젝트 소개
 
 코드캠프 교육과정 이후 수료증을 발급받기 위한 과제로 써, 수강기간 내 배웠던 기능들을 종합하여 
 
 브랜드 페이지를 구현 하였음.
+
+## 기술 스택
+<img src="https://img.shields.io/badge/JavaScript-바탕색?style=flat&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/TypeScript-바탕색?style=flat&logo=TypeScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-바탕색?style=flat&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Next.js-바탕색?style=flat&logo=Next.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Graphql-바탕색?style=flat&logo=Graphql&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS-바탕색?style=flat&logo=CSS&logoColor=white"/>
 
 ## 프로젝트 상세 내용
 
