@@ -10,12 +10,12 @@
 브랜드 페이지를 구현 하였음.
 
 ## 기술 스택
-<img src="https://img.shields.io/badge/JavaScript-바탕색?style=flat&logo=JavaScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/TypeScript-바탕색?style=flat&logo=TypeScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/React-바탕색?style=flat&logo=React&logoColor=white"/>
-<img src="https://img.shields.io/badge/Next.js-바탕색?style=flat&logo=Next.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/Graphql-바탕색?style=flat&logo=Graphql&logoColor=white"/>
-<img src="https://img.shields.io/badge/CSS-바탕색?style=flat&logo=CSS&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-#F7DF1E?style=flat&logo=JavaScript&logoColor=black"/>
+<img src="https://img.shields.io/badge/TypeScript-#3178C6?style=flat&logo=TypeScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-#61DAFB?style=flat&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Next.js-#000000?style=flat&logo=Next.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Graphql-#E10098?style=flat&logo=Graphql&logoColor=black"/>
+<img src="https://img.shields.io/badge/CSS-#1572B6?style=flat&logo=CSS&logoColor=white"/>
 
 ## 프로젝트 상세 내용
 
